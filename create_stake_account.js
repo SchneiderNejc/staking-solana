@@ -16,6 +16,17 @@ const main = async() => {
     const stakeAccount = Keypair.generate();
     const minimumRent = await connection.getMinimumBalanceForRentExemption(
         StakeProgram.space);
+    const amountToStake = minimumRent * (0.5 * LAMPORTS_PER_SOL);
+    const createStakeAccountTx = StakeProgram.createAccount({
+        authorized: new Authorized(wallet.publicKey, wallet.publicKey),
+        fromPubkey: wallet.publicKey,
+        lamports: amountToStake,
+        lockup: new Lockup(0, 0, wallet.publicKey), // 0 = already expired.
+        stakePubkey: stakeAccount.publicKey
+    });
+    const createStakeAccountTxId = await sendAndConfirmTransaction(
+        connection, createStakeAccountTx, [wallet, stakeAccount]
+    ); // Should return tx id.
 };
 
 
