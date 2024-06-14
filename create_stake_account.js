@@ -11,6 +11,11 @@ const main = async() => {
     // Verify balance
     const balance = await connection.getBalance(wallet.publicKey);
     console.log(balance);
+
+    // Create stake account
+    const stakeAccount = Keypair.generate();
+    const minimumRent = await connection.getMinimumBalanceForRentExemption(
+        StakeProgram.space);
 };
 
 
