@@ -27,6 +27,13 @@ const main = async() => {
     const createStakeAccountTxId = await sendAndConfirmTransaction(
         connection, createStakeAccountTx, [wallet, stakeAccount]
     ); // Should return tx id.
+
+    console.log(`Stake account created. Tx Id: ${createStakeAccountTxId}`);
+    let stakeBalance = await connection.getBalance(stakeAccount.publicKey);
+    console.log(`Stake account balance: ${stakeBalance / LAMPORTS_PER_SOL} SOL`);
+    let stakeStatus = await connection.getStakeActivation(stakeAccount.publicKey);
+    console.log(`Stake account status: ${stakeStatus.state}`);
+    
 };
 
 
