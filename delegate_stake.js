@@ -43,6 +43,8 @@ const main = async () => {
         votePubkey: selectedValidatorPubkey,
     });
 
+    const delegateTxId = await sendAndConfirmTransaction(connection, delegateTx, [wallet]);
+    console.log(`Stake account delegated to ${selectedValidatorPubkey}, Tx Id: ${delegateTxId}`);
 };
 
 
