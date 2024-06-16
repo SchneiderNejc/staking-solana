@@ -10,6 +10,20 @@ const main = async () => {
     const STAKE_PROGRAM_ID = new PublicKey(
         "Stake11111111111111111111111111111111111111" // From https://docs.solanalabs.com/runtime/programs
     );
+    
+    // @todo paste validator's address
+    const VOTE_PUB_KEY;
+
+    const accounts = await connection.getParsedProgramAccounts(STAKE_PROGRAM_ID, {
+        filters: [
+            {dataSize: 200},
+            {
+                memcmp: {
+                    offset: 124,
+                    bytes: VOTE_PUB_KEY,
+                },
+            },
+        ],
     });
 
     stakeStatus = await connection.getStakeActivation(stakeAccount.publicKey);
