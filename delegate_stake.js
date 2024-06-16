@@ -33,6 +33,7 @@ const main = async () => {
     console.log(`Stake account balance: ${stakeBalance / LAMPORTS_PER_SOL} SOL`);
     let stakeStatus = await connection.getStakeActivation(stakeAccount.publicKey);
     console.log(`Stake account status: ${stakeStatus.state}`);
+    
     // Validators delegation
     const validators = await connection.getVoteAccounts();
     const selectedValidator = validators.current[0];
@@ -45,6 +46,7 @@ const main = async () => {
 
     const delegateTxId = await sendAndConfirmTransaction(connection, delegateTx, [wallet]);
     console.log(`Stake account delegated to ${selectedValidatorPubkey}, Tx Id: ${delegateTxId}`);
+
     stakeStatus = await connection.getStakeActivation(stakeAccount.publicKey);
     console.log(`Stake account status: ${stakeStatus.state}`);
 };
