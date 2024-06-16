@@ -6,6 +6,7 @@ const main = async () => {
     /* @note To get delegators for a specific validator is a bit tricky,
              since stake program class in @solana/web3.js doesen't
              yet have a method to do this. So we have to do it manually. */
+
     
     const STAKE_PROGRAM_ID = new PublicKey(
         "Stake11111111111111111111111111111111111111" // From https://docs.solanalabs.com/runtime/programs
@@ -31,6 +32,7 @@ const main = async () => {
         console.log(`Sample delegator: ${JSON.stringify(accounts[0])}`);
     }
 };
+
 
 
 const runMain = async () => {
