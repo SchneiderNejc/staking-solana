@@ -26,6 +26,10 @@ const main = async () => {
         ],
     });
 
+    console.log(`Total number of delegators found for ${VOTE_PUB_KEY} is ${accounts.length}`)
+    if (accounts.length) {
+        console.log(`Sample delegator: ${JSON.stringify(accounts[0])}`);
+    }
 };
 
 
