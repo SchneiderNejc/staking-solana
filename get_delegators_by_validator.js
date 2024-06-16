@@ -26,8 +26,6 @@ const main = async () => {
         ],
     });
 
-    stakeStatus = await connection.getStakeActivation(stakeAccount.publicKey);
-    console.log(`Stake account status: ${stakeStatus.state}`);
 };
 
 
