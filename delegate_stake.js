@@ -37,6 +37,11 @@ const main = async () => {
     const validators = await connection.getVoteAccounts();
     const selectedValidator = validators.current[0];
     const selectedValidatorPubkey = new PublicKey(selectedValidator.votePubkey);
+    const delegateTx = StakeProgram.delegate({
+        stakePubkey: stakeAccount.publicKey,
+        authorizedPubkey: wallet.publicKey,
+        votePubkey: selectedValidatorPubkey,
+    });
 
 };
 
